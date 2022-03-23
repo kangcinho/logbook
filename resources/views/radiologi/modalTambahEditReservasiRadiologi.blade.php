@@ -1,0 +1,136 @@
+<div class="modal fade" id="modalTambahEditReservasiRadiologi" tabindex="-1" role="dialog" aria-labelledby="modalTambahEditReservasiRadiologi" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-light">
+        <h5 class="modal-title">Tambah Data Reservasi Radiologi</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="msgHasilPencarianRM"></div>
+        {!! Form::open(array('class' => "needs_validation", 'novalidate', 'id'=>'editTambahReservasiRadiologi', 'files'=>'true')) !!}
+          <div class="row">
+            <div class="form-group col-xs-12">
+              {!! Form::label('slugRadiologi','Slug',array('style'=>'display:none')) !!}
+              {!! Form::text('slugRadiologi','',array('style' => 'display:none')) !!}
+              {!! Form::label('slugPasien','Slug',array('style'=>'display:none')) !!}
+              {!! Form::text('slugPasien','',array('style' => 'display:none')) !!}
+            </div>
+
+            <div class="form-group col-xs-12 col-md-4">
+              {!! Form::label('tgl_ditindak','Tanggal Dilakukan Tindakan') !!}
+              {!! Form::date('tgl_ditindak','',array("class" => "form-control form-control-sm", "placeholder" => "Masukan Tanggal Dilakukan Tindakan", "required" ))!!}
+              <div class="invalid-feedback">
+                Tanggal Dilakukan Tindakan Tidak Boleh Kosong
+              </div>
+            </div>
+
+            <div class="form-group col-xs-12 col-md-4">
+              {!! Form::label('waktu_ditindak','Waktu Dilakukan Tindakan') !!}
+              {!! Form::text('waktu_ditindak','',array("class" => "form-control form-control-sm", "placeholder" => "Masukan Waktu Dilakukan Tindakan", "required" ))!!}
+              <div class="form-text text-danger small" id="suggestTime"></div>
+              <div class="invalid-feedback">
+                Waktu Dilakukan Tindakan Tidak Boleh Kosong
+              </div>
+            </div>
+
+            <div class="form-group col-xs-12 col-md-4">
+              {!! Form::label('no_rm','Nomor RM Pasien') !!}
+              <div class="input-group input-group-sm">
+                {!! Form::text('no_rm','',array("class" => "form-control form-control-sm", "placeholder" => "Masukan Nomor RM", "id"=>"no_rm" ))!!}
+                <span class="input-group-btn" id="btnSearchNRM"><button class="btn btn-outline"><span class="fas fa-search"></span></button></span>
+              </div>
+            </div>
+
+            <div class="form-group col-xs-12 col-md-4">
+              {!! Form::label('nama','Nama Pasien') !!}
+              {!! Form::text('nama','',array("class" => "form-control form-control-sm", "placeholder" => "Masukan Nama Pasien", "required" ))!!}
+              <div class="invalid-feedback">
+                Nama Pasien Tidak Boleh Kosong
+              </div>
+            </div>
+
+            <div class="form-group col-xs-12 col-md-4">
+              {!! Form::label('tlp','Telpon Pasien') !!}
+              {!! Form::text('tlp','',array("class" => "form-control form-control-sm", "placeholder" => "Masukan Nomor Telpon", "required" ))!!}
+              <div class="invalid-feedback">
+                Nomor Telpon Tidak Boleh Kosong
+              </div>
+            </div>
+
+            <div class="form-group col-xs-12 col-md-4 d-none">
+              {!! Form::label('tgl_lahir','Tanggal Lahir Pasien') !!}
+              {!! Form::date('tgl_lahir','',array("class" => "form-control form-control-sm", "placeholder" => "Masukan Tanggal Lahir" ))!!}
+            </div>
+
+            <div class="form-group col-xs-12 col-md-4">
+              {!! Form::label('alamat','Alamat Pasien') !!}
+              {!! Form::textarea('alamat','',array("class" => "form-control form-control-sm", "placeholder" => "Masukan Alamat Pasien", "required", 'rows'=>"1", 'style'=>'resize:none' ))!!}
+              <div class="invalid-feedback">
+                Alamat Pasien Tidak Boleh Kosong
+              </div>
+            </div>
+
+            <div class="form-group col-xs-12 col-md-4">
+              {!! Form::label('dokter_pengirim','Dokter Pengirim') !!}
+              {!! Form::text('dokter_pengirim','',array("class" => "form-control form-control-sm", "placeholder" => "Masukan Dokter Pengirim"))!!}
+            </div>
+
+            <div class="form-group col-xs-12 col-md-4">
+              {!! Form::label('dokter_penindak','Dokter Penindak') !!}
+              {!! Form::text('dokter_penindak','',array("class" => "form-control form-control-sm", "placeholder" => "Masukan Dokter Penindak", "required"))!!}
+              <div class="invalid-feedback">
+                Dokter Penindak Tidak Boleh Kosong
+              </div>
+            </div>
+
+            <div class="form-group col-xs-12 col-md-4">
+              {!! Form::label('jenis_tindakan','Jenis Tindakan') !!}
+              {!! Form::text('jenis_tindakan','',array("class" => "form-control form-control-sm", "placeholder" => "Masukan Jenis Tindakan", "required"))!!}
+              <div class="invalid-feedback">
+                Jenis Tindakan Tidak Boleh Kosong
+              </div>
+            </div>
+
+            <div class="form-group col-xs-12 col-md-4">
+              {!! Form::label('petugas_radiologi','Petugas Radiologi') !!}
+              {!! Form::text('petugas_radiologi','',array("class" => "form-control form-control-sm", "placeholder" => "Masukan Petugas Radiologi", "required"))!!}
+              <div class="invalid-feedback">
+                Petugas Radiologi Tidak Boleh Kosong
+              </div>
+            </div>
+
+            <div class="form-group col-xs-12 col-md-6 d-none">
+              {!! Form::label('id_bpjs','ID BPJS') !!}
+              {!! Form::text('id_bpjs','',array("class" => "form-control form-control-sm", "placeholder" => "Masukan ID BPJS" ))!!}
+            </div>
+
+            <div class="form-group col-xs-12 col-md-6 d-none">
+              {!! Form::label('kelas_bpjs','Kelas BPJS') !!}
+              {!! Form::text('kelas_bpjs','',array("class" => "form-control form-control-sm", "placeholder" => "Masukan Kelas BPJS" ))!!}
+            </div>
+
+            <div class="custom-file col-xs-12 col-md-4">
+              {!! Form::label('surat_rujukan','Surat Rujukan') !!}
+              {!! Form::file('surat_rujukan',array("class" => "form-control-file form-control-sm", "placeholder" => "Upload Surat Rujukan"))!!}
+              <div class="valid-feedback">
+                Surat Rujukan Boleh Kosong
+              </div>
+            </div>
+
+            <div class="form-check form-check-inline ml-4 pl-2">
+              <input class="form-check-input" type="checkbox" id="confirm" name="confirm">
+              <label for="confirm">Konfirmasi Kehadiran Pasien</label>
+            </div>
+          </div>
+
+          <div class="text-right">
+            <button type="submit" class="btn btn-primary"><span class="fa fa-save"></span> Simpan</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal"><span class="fa fa-ban"></span> Batal</button>
+          </div>
+        {!! Form::close() !!}
+      </div>
+    </div>
+  </div>
+</div>

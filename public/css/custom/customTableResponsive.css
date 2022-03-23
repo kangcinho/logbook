@@ -1,0 +1,10 @@
+.customTableResponsive{
+  word-wrap: break-word;
+  /* min-width: 100px; */
+  max-width: 100px;
+}
+
+.customModalResponsive{
+  word-wrap: break-word;
+  max-width: 100%;
+}
